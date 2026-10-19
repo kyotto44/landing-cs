@@ -1,0 +1,14 @@
+
+/* Hoja de entrada: importa los módulos en el orden en que deben aplicarse. */
+/* Primero se normaliza el navegador y luego se construyen tema, base y componentes. */
+@import url("reset.css");
+@import url("variables.css");
+@import url("base.css");
+@import url("header.css");
+@import url("hero.css");
+@import url("componentes.css");
+@import url("secciones.css");
+@import url("animaciones.css");
+@import url("responsive.css");
+/* Al final: foco, enlace de salto y movimiento reducido deben ganar a todo lo anterior. */
+@import url("accesibilidad.css");

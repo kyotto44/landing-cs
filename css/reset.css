@@ -1,0 +1,44 @@
+/* Normaliza márgenes, rellenos y cálculo de tamaños en todos los elementos. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Permite que los enlaces internos se desplacen de forma progresiva.
+   scroll-padding-top descuenta el header fijo al llegar a cada sección. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--alto-header, 73px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Elimina el margen que algunos navegadores aplican por defecto al documento. */
+body {
+  margin: 0;
+}
+
+/* Impide que una imagen desborde el ancho disponible de su contenedor. */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Base común para enlaces; los componentes pueden redefinir estos valores. */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Los botones heredan la tipografía del documento en lugar de la del sistema. */
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Las listas usadas como cuadrícula (timeline, arsenal) no muestran viñetas. */
+ol,
+ul {
+  list-style: none;
+}

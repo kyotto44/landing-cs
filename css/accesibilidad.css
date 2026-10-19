@@ -1,0 +1,75 @@
+/* Accesibilidad: se importa al final para que estas reglas tengan prioridad. */
+
+/* Enlace "Saltar al contenido": fuera de la vista hasta que recibe el foco con Tab. */
+.saltar-contenido {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: var(--capa-saltar);
+  padding: 0.75rem 1.1rem;
+  border-radius: var(--radio-borde);
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+  font-weight: 600;
+  transform: translateY(calc(-100% - 1.5rem));
+}
+
+.saltar-contenido:focus {
+  transform: none;
+}
+
+/* Texto solo para lectores de pantalla (por ejemplo, el estado de los filtros). */
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Foco visible y coherente con la marca para quien navega con teclado. */
+:focus-visible {
+  outline: 2px solid var(--color-primario-claro);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.boton:focus-visible,
+.filtro:focus-visible,
+.menu-boton:focus-visible {
+  outline-offset: 3px;
+  border-radius: var(--radio-borde);
+}
+
+/* Movimiento reducido: se quitan desplazamientos y parpadeos, se conservan los cambios
+   de color y opacidad que comunican estado (activo, abierto, seleccionado). */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cursor {
+    animation: none;
+  }
+
+  .boton:hover,
+  .boton:active,
+  .tarjeta:hover,
+  .tecnologia:hover {
+    transform: none;
+  }
+
+  .menu a::after {
+    transition: none;
+  }
+
+  .revelar {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

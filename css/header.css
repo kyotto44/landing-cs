@@ -1,0 +1,172 @@
+/* Cabecera fija que permanece visible mientras se recorre la página. */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-fondo-alt);
+  border-bottom: 1px solid var(--color-borde);
+  z-index: var(--capa-header);
+}
+
+/* Alinea horizontalmente la marca y el menú dentro del contenedor global.
+   Solo se fija el relleno vertical: el lateral lo aporta .contenedor (antes
+   "padding: 1rem 0" lo anulaba y en móvil el header quedaba pegado al borde). */
+.header-contenido {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* La marca combina imagen, nombre y subtítulo en una unidad enlazable. */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  text-decoration: none;
+  color: var(--color-texto);
+}
+
+/* Mantiene el logotipo dentro de un cuadrado estable sin deformarlo. */
+.logo-imagen {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.logo strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.logo span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-texto-suave);
+}
+
+/* El enlace del logo llega a 44px de alto (objetivo táctil) sin mover nada:
+   el relleno extra se compensa con un margen negativo igual. */
+.header .logo {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-top: -2px;
+  margin-bottom: -2px;
+}
+
+/* Distribución horizontal de los enlaces de navegación. */
+.menu {
+  display: flex;
+  gap: 2rem;
+}
+
+/* Apariencia y transición de los enlaces en estado normal.
+   La barra inferior (::after) indica la sección activa (ver js/scrollspy.js). */
+.menu a {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-texto-suave);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--color-primario);
+  transform: scaleX(0);
+  transition: transform var(--duracion-media) var(--curva-salida);
+}
+
+/* El color primario identifica visualmente el enlace bajo el cursor. */
+.menu a:hover {
+  color: var(--color-primario);
+}
+
+/* Sección visible en pantalla: texto claro y barra naranja completa. */
+.menu a[aria-current="true"] {
+  color: var(--color-texto);
+}
+
+.menu a[aria-current="true"]::after {
+  transform: scaleX(1);
+}
+
+/* Botón del menú móvil: oculto en escritorio, responsive.css lo muestra en pantallas pequeñas. */
+.menu-boton {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: transparent;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform var(--duracion-rapida) var(--curva-salida);
+}
+
+.menu-boton:active {
+  transform: scale(0.96);
+}
+
+/* Las tres líneas del icono se convierten en una X cuando el menú está abierto. */
+.menu-boton-icono {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 18px;
+}
+
+.menu-boton-icono span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--color-texto);
+  transition: transform var(--duracion-media) var(--curva-salida), opacity var(--duracion-rapida) ease;
+}
+
+.menu-boton[aria-expanded="true"] {
+  border-color: var(--color-primario);
+}
+
+.menu-boton[aria-expanded="true"] .menu-boton-icono span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-boton[aria-expanded="true"] .menu-boton-icono span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-boton[aria-expanded="true"] .menu-boton-icono span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Pantallas táctiles anchas (tablets): los enlaces del menú también miden 44px de alto. */
+@media (pointer: coarse) and (min-width: 769px) {
+  .menu a {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  .menu a::after {
+    bottom: 5px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .menu-boton:hover {
+    border-color: var(--color-primario);
+  }
+}

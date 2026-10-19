@@ -1,0 +1,23 @@
+/* Aparición en orden de las secuencias de la página (roles y pasos del proceso).
+   js/revelar.js agrega .revelar solo a los elementos que todavía están debajo de la
+   pantalla y les asigna --orden; sin JavaScript todo se ve desde el principio. */
+.revelar {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 450ms var(--curva-salida), transform 600ms var(--curva-salida);
+  transition-delay: calc(var(--orden, 0) * 70ms);
+}
+
+/* Al entrar en pantalla, el elemento vuelve a su posición normal. */
+.revelar.revelado {
+  opacity: 1;
+  transform: none;
+}
+
+/* Al imprimir no hay desplazamiento que dispare la aparición: todo debe verse. */
+@media print {
+  .revelar {
+    opacity: 1;
+    transform: none;
+  }
+}

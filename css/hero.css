@@ -1,0 +1,203 @@
+/* Hero: primera pantalla, con texto a la izquierda e imagen temática a la derecha. */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* La imagen ocupa la mitad derecha y queda detrás del contenido estructural. */
+.hero-imagen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+}
+
+.hero-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Grid de dos columnas que reserva espacio para la imagen del hero. */
+.hero-contenido {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+/* El texto se mantiene explícitamente en la primera columna del grid. */
+.hero-texto {
+  grid-column: 1 / 2;
+}
+
+.etiqueta {
+  color: var(--color-primario-claro);
+  font-family: var(--fuente-mono);
+  font-size: 0.9rem;
+}
+
+.hero-texto h1 {
+  font-size: 2.8rem;
+  line-height: 1.15;
+  margin: 1rem 0;
+}
+
+.resaltado {
+  color: var(--color-primario);
+}
+
+.hero-texto p {
+  color: var(--color-texto-suave);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+/* Agrupa las acciones principales y secundarias del hero. */
+.hero-botones {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* Base compartida para enlaces que visualmente funcionan como botones. */
+.boton {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radio-borde);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Al presionar, el botón se hunde un poco: confirma que el clic o toque se registró. */
+.boton:active {
+  transform: scale(0.97);
+}
+
+/* Eleva ligeramente cualquier botón al pasar el cursor para dar respuesta visual.
+   Solo con mouse: en pantallas táctiles el hover se quedaría "pegado" tras tocar. */
+@media (hover: hover) and (pointer: fine) {
+  .boton:hover {
+    transform: translateY(-2px);
+  }
+
+  .boton:active {
+    transform: translateY(-2px) scale(0.97);
+  }
+
+  .boton-primario:hover {
+    background-color: var(--color-primario-claro);
+  }
+
+  .boton-secundario:hover {
+    border-color: var(--color-primario);
+  }
+}
+
+/* Texto oscuro sobre naranja: el blanco original solo llegaba a 2:1 de contraste
+   (WCAG pide 4.5:1); con el fondo de la página se alcanza 9.6:1. */
+.boton-primario {
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+}
+
+.boton-secundario {
+  background-color: transparent;
+  color: var(--color-texto);
+  border: 1px solid var(--color-borde);
+}
+
+/* Consola de comandos: bloque narrativo situado inmediatamente después del hero. */
+.consola-flotante {
+  padding: 3rem 0;
+  background-color: var(--color-fondo-alt);
+  border-top: 1px solid var(--color-borde);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.consola-flotante .hero-consola {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Marco común de la consola, con superficie, borde y contenido recortado. */
+.hero-consola {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  overflow: hidden;
+}
+
+/* Barra superior que imita la cabecera de una terminal. */
+.consola-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1rem;
+  background-color: var(--color-fondo-alt);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.punto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-borde);
+}
+
+.consola-titulo {
+  margin-left: 0.5rem;
+  font-family: var(--fuente-mono);
+  font-size: 0.8rem;
+  color: var(--color-texto-suave);
+}
+
+/* Cuerpo monoespaciado para conservar la apariencia de comandos alineados. */
+.consola-cuerpo {
+  padding: 1.2rem;
+  font-family: var(--fuente-mono);
+  font-size: 0.9rem;
+  line-height: 1.9;
+}
+
+.prompt {
+  color: var(--color-primario-claro);
+  margin-right: 0.5rem;
+}
+
+.prompt-exito {
+  color: var(--color-exito);
+  margin-right: 0.5rem;
+}
+
+/* El cursor parpadeante simula una terminal activa sin JavaScript. */
+.cursor {
+  animation: parpadeo 1s infinite;
+}
+
+/* Escritura animada (js/terminal.js): las líneas que aún no se escriben conservan
+   su espacio pero no se ven, así la consola no cambia de alto mientras se escribe. */
+.consola-cuerpo .linea-pendiente,
+.consola-cuerpo .texto-pendiente {
+  visibility: hidden;
+}
+
+/* Mientras se escribe, el cursor queda fijo (sin parpadeo), como en una terminal real. */
+.consola-cuerpo.escribiendo .cursor {
+  animation: none;
+}
+
+@keyframes parpadeo {
+  50% {
+    opacity: 0;
+  }
+}

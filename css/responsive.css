@@ -1,0 +1,263 @@
+/* Tablet pequeña: el menú de escritorio necesita algo menos de separación para caber en una fila. */
+@media (max-width: 960px) and (min-width: 769px) {
+  .menu {
+    gap: 1.25rem;
+  }
+}
+
+/* Tablet y móvil: reorganiza las áreas horizontales en un flujo vertical. */
+@media (max-width: 768px) {
+  /* Header: la marca queda a la izquierda y el botón del menú a la derecha.
+     Antes los cinco enlaces iban en una segunda fila y se salían por el borde izquierdo. */
+  .menu-boton {
+    display: inline-flex;
+  }
+
+  /* El botón mide 44px (4 más que el logo): se recorta el relleno vertical para que
+     la cabecera siga midiendo 73px, el valor de --alto-header. */
+  .header-contenido {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  /* El menú se despliega como un panel bajo la cabecera (js/menu.js controla aria-expanded). */
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.25rem 1.5rem 0.75rem;
+    background-color: var(--color-fondo-alt);
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 140ms ease, transform 140ms var(--curva-salida), visibility 0s linear 140ms;
+  }
+
+  .menu-boton[aria-expanded="true"] + .menu {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity var(--duracion-media) var(--curva-salida),
+      transform var(--duracion-media) var(--curva-salida), visibility 0s;
+  }
+
+  /* Cada enlace es un objetivo táctil de 48px de alto. */
+  .menu a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--color-borde);
+  }
+
+  .menu a:last-child {
+    border-bottom: 0;
+  }
+
+  /* En el panel, la sección activa se marca con el color naranja en lugar de la barra inferior. */
+  .menu a::after {
+    display: none;
+  }
+
+  .menu a[aria-current="true"] {
+    color: var(--color-primario);
+  }
+
+  /* Hero: la imagen aparece antes del texto y las acciones se apilan. */
+  .hero {
+    min-height: auto;
+    display: block;
+    padding: 2.5rem 0;
+  }
+
+  .hero-imagen {
+    position: static;
+    width: 100%;
+    height: 240px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-contenido {
+    display: block;
+  }
+
+  .hero-texto h1 {
+    font-size: 2rem;
+  }
+
+  .hero-texto p {
+    max-width: 100%;
+  }
+
+  .hero-botones {
+    flex-direction: column;
+  }
+
+  .boton {
+    text-align: center;
+  }
+
+  /* Estrategia: una tarjeta por fila para conservar legibilidad. */
+  .tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  /* Roles: el número ocupa una fila propia en cada tarjeta. */
+  .rol {
+    grid-template-columns: 1fr;
+  }
+
+  .rol .numero {
+    font-size: 1.5rem;
+  }
+
+  /* Proceso: los pasos se convierten en una única columna vertical. */
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  /* Arsenal: dos elementos por fila en la mayoría de móviles. */
+  .tecnologias {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* CTA final: reduce el título para evitar desbordamientos. */
+  .cta-final h2 {
+    font-size: 1.8rem;
+  }
+
+  /* Footer: marca, secciones y créditos se apilan en una sola columna. */
+  .footer-contenido {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Enlaces del pie en fila, cada uno de al menos 44×44px para tocarlo con comodidad.
+     El relleno lateral agranda el área táctil de las palabras cortas (Inicio, Roles) y el
+     margen negativo del contenedor mantiene el texto alineado con el resto del pie. */
+  .footer-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0 0.5rem;
+    margin-left: -0.25rem;
+  }
+
+  .footer-menu a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 0.25rem;
+  }
+
+  .footer-copy {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Móviles estrechos: simplifica aún más la cuadrícula del arsenal y el hero. */
+@media (max-width: 480px) {
+  .tecnologias {
+    grid-template-columns: 1fr;
+  }
+
+  /* Los tres filtros caben en una fila y la llenan, como un control segmentado. */
+  .filtros {
+    gap: 0.5rem;
+  }
+
+  .filtro {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 0.55rem 0.75rem;
+  }
+
+  .hero-texto h1 {
+    font-size: 1.7rem;
+  }
+}
+
+/* Pantallas de 320–374px: margen lateral de 16px y nombre un poco más pequeño,
+   para que la marca y el botón del menú quepan en una sola fila. */
+@media (max-width: 374px) {
+  /* Solo el relleno lateral: un "padding" abreviado anularía el vertical del header. */
+  .contenedor {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .header-contenido {
+    gap: 0.5rem;
+  }
+
+  .logo {
+    gap: 0.6rem;
+  }
+
+  .logo strong {
+    font-size: 0.875rem;
+  }
+
+  .menu {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Sin JavaScript (navegadores que soportan "scripting"): el botón no podría abrir nada,
+   así que se oculta y los enlaces se muestran siempre, en una segunda fila del header. */
+@media (scripting: none) and (max-width: 768px) {
+  .menu-boton {
+    display: none;
+  }
+
+  .header-contenido {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+  }
+
+  .menu {
+    position: static;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .menu a {
+    min-height: 44px;
+    font-size: 0.9rem;
+    border-bottom: 0;
+  }
+
+  /* Header de dos filas (117px): se ajustan la compensación del contenido y de las anclas. */
+  main {
+    padding-top: 124px;
+  }
+
+  html {
+    scroll-padding-top: 117px;
+  }
+}
+
+/* Movimiento reducido en el panel móvil: aparece con un fundido, sin desplazarse. */
+@media (prefers-reduced-motion: reduce) and (max-width: 768px) {
+  .menu,
+  .menu-boton[aria-expanded="true"] + .menu {
+    transform: none;
+  }
+}

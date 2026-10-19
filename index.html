@@ -1,0 +1,422 @@
+<!doctype html>
+<!-- Documento principal de la landing page sobre construcción de software. -->
+<html lang="es">
+  <head>
+    <!-- Metadatos básicos para codificación, escala responsive y título de la pestaña. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Construcción de Software</title>
+
+    <!-- Descripción para buscadores y vista previa al compartir el enlace (Open Graph). -->
+    <meta
+      name="description"
+      content="Landing que explica cómo se construye software con la metáfora de una ronda de Counter-Strike: estrategia, roles, proceso y arsenal. Proyecto académico de Construcción de Software, USTA."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="Construcción de Software" />
+    <meta property="og:title" content="Construcción de Software · Táctica y ejecución" />
+    <meta
+      property="og:description"
+      content="Cómo se construye software contado como una ronda de Counter-Strike: lectura, coordinación y ejecución."
+    />
+
+    <!-- Tema oscuro declarado para que barras de desplazamiento y controles nativos combinen. -->
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#14141c" />
+
+    <!-- Favicon y acceso directo en iOS, derivados del logo. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="imagenes/favicon-32.png" />
+    <link rel="apple-touch-icon" href="imagenes/apple-touch-icon.png" />
+
+    <!-- estilos.css importa, en orden, todos los módulos CSS de la página. -->
+    <link rel="stylesheet" href="css/estilos.css" />
+
+    <!-- Interactividad: cada módulo es independiente y se ejecuta al terminar de leer el HTML. -->
+    <script defer src="js/menu.js"></script>
+    <script defer src="js/scrollspy.js"></script>
+    <script defer src="js/terminal.js"></script>
+    <script defer src="js/arsenal.js"></script>
+    <script defer src="js/revelar.js"></script>
+  </head>
+  <body>
+    <!-- Enlace oculto que aparece al navegar con teclado para saltar directo al contenido. -->
+    <a href="#contenido" class="saltar-contenido">Saltar al contenido</a>
+
+    <!-- Cabecera fija: contiene la identidad visual y la navegación por anclas. -->
+    <header class="header">
+      <div class="contenedor header-contenido">
+        <!-- El logotipo también funciona como enlace para volver al inicio. -->
+        <a href="#inicio" class="logo">
+          <img src="imagenes/logo.webp" alt="" class="logo-imagen" width="40" height="40" />
+          <div>
+            <strong>Construcción de Software</strong>
+            <span>Táctica y ejecución</span>
+          </div>
+        </a>
+
+        <!-- Botón del menú móvil: solo se muestra en pantallas pequeñas (ver responsive.css y js/menu.js). -->
+        <button
+          class="menu-boton"
+          type="button"
+          aria-expanded="false"
+          aria-controls="menu-principal"
+          aria-label="Menú de secciones"
+        >
+          <span class="menu-boton-icono" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <!-- Cada enlace desplaza suavemente al usuario hasta una sección del contenido. -->
+        <nav class="menu" id="menu-principal" aria-label="Secciones">
+          <a href="#inicio">Inicio</a>
+          <a href="#estrategia">Estrategia</a>
+          <a href="#roles">Roles</a>
+          <a href="#proceso">Proceso</a>
+          <a href="#arsenal">Arsenal</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Contenido principal agrupado según el recorrido narrativo de la landing. -->
+    <main id="contenido">
+      <!-- Hero: presenta la idea central y las dos llamadas a la acción. -->
+      <section id="inicio" class="hero">
+        <!-- Imagen decorativa/temática posicionada junto al texto principal. -->
+        <div class="hero-imagen">
+          <img
+            src="imagenes/hero.webp"
+            alt="Silueta blanca de un soldado de Counter-Strike apuntando, sobre fondo naranja y azul"
+            width="512"
+            height="512"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+
+        <div class="contenedor hero-contenido">
+          <div class="hero-texto">
+            <span class="etiqueta">// Táctica de equipo</span>
+            <h1>Cada <span class="resaltado">ejecución</span> gana la ronda antes de disparar.</h1>
+            <p>
+              Así como el software se construye por etapas, una ronda ganada
+              no es suerte: es lectura de mapa, estrategia y coordinación
+              de equipo, ejecutadas bajo presión.
+            </p>
+            <div class="hero-botones">
+              <a href="#estrategia" class="boton boton-primario">Ver estrategia</a>
+              <a href="#arsenal" class="boton boton-secundario">Ver arsenal</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Consola visual que refuerza la metáfora entre comandos y ejecución. -->
+      <!-- js/terminal.js escribe las líneas una a una cuando la consola entra en pantalla. -->
+      <div class="consola-flotante" data-espia="inicio">
+        <div class="contenedor">
+          <div class="hero-consola">
+            <div class="consola-barra">
+              <span class="punto"></span>
+              <span class="punto"></span>
+              <span class="punto"></span>
+              <span class="consola-titulo">terminal — mirage</span>
+            </div>
+            <div class="consola-cuerpo" data-terminal>
+              <p><span class="prompt">&gt;</span> bind "k" "buy ak47"</p>
+              <p><span class="prompt">&gt;</span> bind "j" "buy flashbang"</p>
+              <p><span class="prompt">&gt;</span> radio "roger that"</p>
+              <p><span class="prompt">&gt;</span> equipo.ejecutar("A_rush")</p>
+              <p data-salida><span class="prompt-exito">&gt;</span> ronda_ganada = true<span class="cursor" aria-hidden="true">▌</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estrategia: resume la preparación de una ronda en tres conceptos. -->
+      <section id="estrategia" class="estrategia">
+        <div class="contenedor">
+          <span class="etiqueta-seccion">01 · Estrategia</span>
+          <h2>Toda ronda se gana en tres momentos</h2>
+
+          <!-- Tarjetas independientes para lectura, coordinación y ejecución. -->
+          <div class="tarjetas">
+            <div class="tarjeta">
+              <div class="tarjeta-icono">
+                <img
+                  src="imagenes/lectura.webp"
+                  alt="Radar con el plano de un mapa del juego"
+                  width="48"
+                  height="48"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Lectura</h3>
+              <p>Info de rotaciones, economía rival y control de mapa antes de mover una ficha.</p>
+            </div>
+
+            <div class="tarjeta">
+              <div class="tarjeta-icono">
+                <img
+                  src="imagenes/coordinacion.webp"
+                  alt="Granada cegadora (flashbang)"
+                  width="48"
+                  height="36"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Coordinación</h3>
+              <p>Calls claras, roles definidos y utility sincronizada entre todo el equipo.</p>
+            </div>
+
+            <div class="tarjeta">
+              <div class="tarjeta-icono">
+                <img
+                  src="imagenes/ejecucion.webp"
+                  alt="Agente con máscara de gas haciendo señal de pulgares arriba"
+                  width="48"
+                  height="27"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Ejecución</h3>
+              <p>El plan se ejecuta rápido, sin dudar, adaptándose si algo sale distinto.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Roles: muestra responsabilidades complementarias dentro del equipo. -->
+      <!-- data-revelar: js/revelar.js hace aparecer los elementos en orden al llegar a la sección. -->
+      <section id="roles" class="roles">
+        <div class="contenedor">
+          <span class="etiqueta-seccion">02 · Roles</span>
+          <h2>El equipo detrás de cada ronda</h2>
+
+          <div class="roles-lista" data-revelar>
+            <article class="rol">
+              <span class="numero">01</span>
+              <div>
+                <h3>IGL</h3>
+                <p>Lee el mapa, decide la estrategia y da las calls en vivo.</p>
+                <div class="tags">
+                  <span>Liderazgo</span>
+                  <span>Economía</span>
+                  <span>Calls</span>
+                </div>
+              </div>
+            </article>
+
+            <div class="flecha" aria-hidden="true">↓</div>
+
+            <article class="rol">
+              <span class="numero">02</span>
+              <div>
+                <h3>Entry Fragger</h3>
+                <p>Abre el sitio primero, absorbe la info y crea espacio para el equipo.</p>
+                <div class="tags">
+                  <span>Agresividad</span>
+                  <span>Reacción</span>
+                </div>
+              </div>
+            </article>
+
+            <div class="flecha" aria-hidden="true">↓</div>
+
+            <article class="rol">
+              <span class="numero">03</span>
+              <div>
+                <h3>AWPer</h3>
+                <p>Controla ángulos largos y define duelos clave a distancia.</p>
+                <div class="tags">
+                  <span>Puntería</span>
+                  <span>Paciencia</span>
+                </div>
+              </div>
+            </article>
+
+            <div class="flecha" aria-hidden="true">↓</div>
+
+            <article class="rol">
+              <span class="numero">04</span>
+              <div>
+                <h3>Support</h3>
+                <p>Utility, trades y cobertura para que la ejecución no se caiga.</p>
+                <div class="tags">
+                  <span>Utility</span>
+                  <span>Trabajo en equipo</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proceso: timeline de actividades desde la compra hasta el repaso. -->
+      <!-- Es una lista ordenada: el número de cada paso lo genera CSS (contador "paso"). -->
+      <section id="proceso" class="proceso">
+        <div class="contenedor">
+          <span class="etiqueta-seccion">03 · Proceso</span>
+          <h2>De la compra al repaso <span class="sin-corte">post-partida</span></h2>
+
+          <ol class="timeline" data-revelar>
+            <li class="paso">
+              <div class="paso-numero" aria-hidden="true"></div>
+              <h3>Economía</h3>
+              <p>Se decide qué comprar según el dinero del equipo.</p>
+            </li>
+
+            <li class="paso">
+              <div class="paso-numero" aria-hidden="true"></div>
+              <h3>Info temprana</h3>
+              <p>Se busca información de posiciones y rotaciones rivales.</p>
+            </li>
+
+            <li class="paso">
+              <div class="paso-numero" aria-hidden="true"></div>
+              <h3>Rotación</h3>
+              <p>El equipo se mueve según la info recolectada.</p>
+            </li>
+
+            <li class="paso">
+              <div class="paso-numero" aria-hidden="true"></div>
+              <h3>Ejecución</h3>
+              <p>Se ejecuta la jugada con utility y timings sincronizados.</p>
+            </li>
+
+            <li class="paso">
+              <div class="paso-numero" aria-hidden="true"></div>
+              <h3>Post-plant</h3>
+              <p>Se defiende la bomba controlando ángulos clave.</p>
+            </li>
+
+            <li class="paso">
+              <div class="paso-numero" aria-hidden="true"></div>
+              <h3>Repaso</h3>
+              <p>Se revisa la demo para corregir errores en la próxima ronda.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Arsenal: catálogo visual de herramientas disponibles en cada ronda. -->
+      <section id="arsenal" class="arsenal">
+        <div class="contenedor">
+          <span class="etiqueta-seccion">04 · Arsenal</span>
+          <h2>El equipo que llevas a cada ronda</h2>
+
+          <!-- Filtros por categoría, como el menú de compra del juego (armas / granadas). -->
+          <!-- Están ocultos (hidden) hasta que js/arsenal.js los activa: sin JavaScript no aparecen. -->
+          <div class="filtros" role="group" aria-label="Filtrar el arsenal por categoría" hidden>
+            <button type="button" class="filtro" data-filtro="todo" aria-pressed="true">
+              Todo <span class="filtro-cantidad" data-cantidad="todo"></span>
+            </button>
+            <button type="button" class="filtro" data-filtro="arma" aria-pressed="false">
+              Armas <span class="filtro-cantidad" data-cantidad="arma"></span>
+            </button>
+            <button type="button" class="filtro" data-filtro="utilidad" aria-pressed="false">
+              Utilidad <span class="filtro-cantidad" data-cantidad="utilidad"></span>
+            </button>
+          </div>
+          <p class="visualmente-oculto" aria-live="polite" data-filtro-estado></p>
+
+          <!-- Cada elemento muestra su imagen como fondo, con un degradado encima (::after) para leer el texto. -->
+          <ul class="tecnologias">
+            <li class="tecnologia" data-categoria="arma">
+              <img class="tecnologia-imagen" src="imagenes/ak47.webp" alt="" width="512" height="384" loading="lazy" decoding="async" />
+              <strong>AK-47</strong>
+              <span>Daño alto</span>
+            </li>
+
+            <li class="tecnologia" data-categoria="arma">
+              <img class="tecnologia-imagen" src="imagenes/awp.webp" alt="" width="512" height="384" loading="lazy" decoding="async" />
+              <strong>AWP</strong>
+              <span>One-shot</span>
+            </li>
+
+            <li class="tecnologia" data-categoria="utilidad">
+              <img class="tecnologia-imagen" src="imagenes/flash.webp" alt="" width="512" height="384" loading="lazy" decoding="async" />
+              <strong>Flashbang</strong>
+              <span>Entradas</span>
+            </li>
+
+            <li class="tecnologia" data-categoria="utilidad">
+              <img class="tecnologia-imagen" src="imagenes/smoke.webp" alt="" width="512" height="384" loading="lazy" decoding="async" />
+              <strong>Smoke</strong>
+              <span>Bloqueo visión</span>
+            </li>
+
+            <li class="tecnologia" data-categoria="utilidad">
+              <img class="tecnologia-imagen" src="imagenes/molotov.webp" alt="" width="512" height="384" loading="lazy" decoding="async" />
+              <strong>Molotov</strong>
+              <span>Control área</span>
+            </li>
+
+            <li class="tecnologia" data-categoria="arma">
+              <img class="tecnologia-imagen" src="imagenes/deagle.webp" alt="" width="512" height="384" loading="lazy" decoding="async" />
+              <strong>Deagle</strong>
+              <span>Eco rounds</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Cierre de la página con una última llamada para volver al inicio. -->
+      <section class="cta-final">
+        <div class="contenedor">
+          <h2>Ganar no es solo tener buena puntería.</h2>
+          <p>Es leer el juego, coordinar con tu equipo y ejecutar sin dudar.</p>
+          <a href="#inicio" class="boton boton-primario">Vuelve al inicio</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Pie de página: identidad, navegación secundaria, créditos y referencia académica. -->
+    <footer class="footer">
+      <div class="contenedor footer-contenido">
+        <div class="footer-marca">
+          <div class="logo">
+            <img src="imagenes/logo.webp" alt="" class="logo-imagen" width="40" height="40" loading="lazy" decoding="async" />
+            <div>
+              <strong>Construcción de Software</strong>
+              <span>Táctica y ejecución</span>
+            </div>
+          </div>
+          <p class="footer-texto">
+            Una landing que explica cómo se construye software usando la metáfora
+            de una ronda de Counter-Strike: estrategia, roles, proceso y arsenal.
+          </p>
+        </div>
+
+        <nav class="footer-columna" aria-label="Secciones (pie de página)">
+          <h2 class="footer-titulo">Secciones</h2>
+          <div class="footer-menu">
+            <a href="#inicio">Inicio</a>
+            <a href="#estrategia">Estrategia</a>
+            <a href="#roles">Roles</a>
+            <a href="#proceso">Proceso</a>
+            <a href="#arsenal">Arsenal</a>
+          </div>
+        </nav>
+
+        <div class="footer-columna">
+          <h2 class="footer-titulo">Créditos</h2>
+          <p class="footer-texto">
+            Las imágenes son de terceros: provienen de Counter-Strike 2 o se basan en
+            su identidad visual (Valve Corporation). Se usan con fines educativos, sin
+            fines comerciales. Este proyecto no está afiliado a Valve.
+          </p>
+          <p class="footer-texto">Hecho con HTML, CSS y JavaScript, sin frameworks.</p>
+        </div>
+      </div>
+
+      <p class="footer-copy">Proyecto académico — Construcción de Software, USTA.</p>
+    </footer>
+  </body>
+</html>

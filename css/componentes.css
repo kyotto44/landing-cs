@@ -1,0 +1,249 @@
+/* Arsenal: banda alternativa que contiene el catálogo de equipamiento. */
+.arsenal {
+  padding: var(--espacio-seccion) 0;
+  background-color: var(--color-fondo-alt);
+}
+
+.arsenal h2 {
+  font-size: 2.2rem;
+  margin: 0.8rem 0 3rem;
+  max-width: 600px;
+}
+
+/* Filtros por categoría (js/arsenal.js). Sin JavaScript tienen el atributo hidden.
+   Cuando aparecen, ocupan la mitad inferior del margen del título para no alargar la sección. */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: -1.5rem 0 1.5rem;
+}
+
+.filtros[hidden] {
+  display: none;
+}
+
+.filtro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  color: var(--color-texto-suave);
+  font-family: var(--fuente-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease,
+    transform var(--duracion-rapida) var(--curva-salida);
+}
+
+.filtro:active {
+  transform: scale(0.97);
+}
+
+/* Número de elementos de cada categoría, con cifras de ancho fijo. */
+.filtro-cantidad {
+  min-width: 1.5em;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background-color: var(--color-fondo);
+  color: var(--color-primario-claro);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+/* Filtro activo: mismo naranja de la marca, con texto oscuro para mantener el contraste. */
+.filtro[aria-pressed="true"] {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+  color: var(--color-fondo);
+}
+
+.filtro[aria-pressed="true"] .filtro-cantidad {
+  background-color: rgba(13, 13, 13, 0.18);
+  color: var(--color-fondo);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .filtro:hover {
+    border-color: var(--color-primario);
+    color: var(--color-texto);
+  }
+
+  .filtro[aria-pressed="true"]:hover {
+    color: var(--color-fondo);
+  }
+}
+
+/* Tres columnas en escritorio; responsive.css adapta esta cuadrícula a pantallas pequeñas. */
+.tecnologias {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+/* Cada elemento muestra su imagen de fondo y coloca el texto al pie.
+   La imagen es un <img> real (carga diferida y WebP) recortado como "cover". */
+.tecnologia {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: center;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Los elementos que el filtro oculta salen del flujo de la cuadrícula. */
+.tecnologia[hidden] {
+  display: none;
+}
+
+.tecnologia-imagen {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Degradado oscuro sobre la imagen (el mismo que antes iba en línea) para leer el texto. */
+.tecnologia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(to top, rgba(13, 13, 13, 0.9) 10%, rgba(13, 13, 13, 0.5) 60%);
+}
+
+/* La elevación y el borde naranja señalan el elemento bajo el cursor (solo con mouse). */
+@media (hover: hover) and (pointer: fine) {
+  .tecnologia:hover {
+    border-color: var(--color-primario);
+    transform: translateY(-4px);
+  }
+}
+
+.tecnologia strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+  color: white;
+}
+
+.tecnologia span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+}
+
+/* CTA final: cierre centrado que resume el mensaje principal de la página. */
+.cta-final {
+  padding: var(--espacio-seccion) 0;
+  text-align: center;
+}
+
+.cta-final h2 {
+  font-size: 2.4rem;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+}
+
+.cta-final p {
+  color: var(--color-texto-suave);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+/* Footer: marca con descripción, navegación secundaria y créditos del proyecto. */
+.footer {
+  padding: 3rem 0 1.5rem;
+  background-color: var(--color-fondo-alt);
+  border-top: 1px solid var(--color-borde);
+}
+
+.footer-contenido {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+  padding-bottom: 2rem;
+}
+
+.footer-texto {
+  max-width: 42ch;
+  margin-top: 1rem;
+  color: var(--color-texto-suave);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.footer-columna .footer-texto:first-of-type {
+  margin-top: 0;
+}
+
+.footer-columna .footer-texto + .footer-texto {
+  margin-top: 0.6rem;
+}
+
+.footer-titulo {
+  margin-bottom: 0.9rem;
+  color: var(--color-primario-claro);
+  font-family: var(--fuente-mono);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.footer-menu a {
+  color: var(--color-texto-suave);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-menu a:hover {
+  color: var(--color-primario);
+}
+
+/* En pantallas táctiles cada enlace del pie mide al menos 44px de alto. */
+@media (pointer: coarse) {
+  .footer-menu {
+    gap: 0;
+  }
+
+  .footer-menu a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+.footer-copy {
+  text-wrap: balance;
+  text-align: center;
+  color: var(--color-texto-suave);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--color-borde);
+  padding-top: 1.5rem;
+}

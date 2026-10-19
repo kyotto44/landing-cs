@@ -1,0 +1,46 @@
+/* Variables globales: centralizan el tema visual y facilitan ajustes posteriores. */
+:root {
+  /* Fondos escalonados para diferenciar el documento, bandas y superficies. */
+  --color-fondo: #0d0d0d;
+  --color-fondo-alt: #14141c;
+  --color-superficie: #1b1b26;
+  --color-borde: #2c2c3a;
+
+  /* Naranja principal y sus variaciones para estados y textos destacados. */
+  --color-primario: #f5a623;
+  --color-primario-oscuro: #c9861a;
+  --color-primario-claro: #ffc966;
+
+  /* Colores secundarios disponibles para elementos que necesiten contraste. */
+  --color-secundario: #2a3167;
+  --color-secundario-claro: #3d4690;
+
+  /* Colores semánticos y colores de texto de la interfaz. */
+  --color-acento: #ffffff;
+  --color-exito: #22c55e;
+  --color-error: #ef4444;
+
+  --color-texto: #f5f5f5;
+  --color-texto-suave: #a3a3ad;
+
+  /* Tipografías: una sans serif para lectura y una monoespaciada para la consola. */
+  --fuente-principal: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --fuente-mono: "Courier New", monospace;
+
+  /* Constantes de espaciado y curvatura compartidas por los componentes. */
+  --espacio-seccion: 7rem;
+  --radio-borde: 8px;
+
+  /* Alto real de la cabecera fija (logo 40px + 2rem de relleno + 1px de borde).
+     Se usa para que los enlaces internos no dejen el título escondido bajo el header. */
+  --alto-header: 73px;
+
+  /* Movimiento: curva de salida rápida y duraciones cortas para la interfaz. */
+  --curva-salida: cubic-bezier(0.23, 1, 0.32, 1);
+  --duracion-rapida: 160ms;
+  --duracion-media: 220ms;
+
+  /* Capas: una sola escala para que los z-index no compitan entre sí. */
+  --capa-header: 1000;
+  --capa-saltar: 1100;
+}

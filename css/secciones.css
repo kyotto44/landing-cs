@@ -1,0 +1,199 @@
+/* Estrategia: primera sección informativa después de la consola. */
+.estrategia {
+  padding: var(--espacio-seccion) 0;
+}
+
+.etiqueta-seccion {
+  color: var(--color-primario-claro);
+  font-family: var(--fuente-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.estrategia h2 {
+  font-size: 2.2rem;
+  margin: 0.8rem 0 3rem;
+  max-width: 600px;
+}
+
+/* Tres tarjetas para presentar las fases de preparación de una ronda. */
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Superficie reutilizable de cada concepto estratégico. */
+.tarjeta {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 2rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Elevación al pasar el mouse; en pantallas táctiles no se aplica para que no quede "pegada". */
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta:hover {
+    border-color: var(--color-primario);
+    transform: translateY(-4px);
+  }
+}
+
+.tarjeta-icono {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+.tarjeta-icono img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tarjeta h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.2rem;
+}
+
+.tarjeta p {
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Roles: lista vertical que representa la colaboración del equipo. */
+.roles {
+  padding: var(--espacio-seccion) 0;
+  background-color: var(--color-fondo-alt);
+}
+
+.roles h2 {
+  font-size: 2.2rem;
+  margin: 0.8rem 0 3rem;
+  max-width: 600px;
+}
+
+/* Reduce el ancho de la lista para que la secuencia sea fácil de leer. */
+.roles-lista {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Cada rol separa el número identificador del contenido descriptivo. */
+.rol {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 1.8rem;
+}
+
+.rol .numero {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  font-family: var(--fuente-mono);
+}
+
+.rol h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.3rem;
+}
+
+.rol p {
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+
+/* Las etiquetas se ajustan a varias líneas cuando el espacio es limitado. */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags span {
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  color: var(--color-primario-claro);
+  font-size: 0.78rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+}
+
+.flecha {
+  text-align: center;
+  color: var(--color-texto-suave);
+  font-size: 1.3rem;
+  margin: 0.6rem 0;
+}
+
+/* Proceso: recorrido cronológico de las decisiones de una ronda. */
+.proceso {
+  padding: var(--espacio-seccion) 0;
+}
+
+.proceso h2 {
+  font-size: 2.2rem;
+  margin: 0.8rem 0 3rem;
+  max-width: 600px;
+}
+
+/* Seis pasos distribuidos en tres columnas en pantallas grandes.
+   Es una lista ordenada (<ol>): el contador "paso" numera cada círculo. */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem 1.5rem;
+  counter-reset: paso;
+}
+
+/* Tarjeta individual del timeline, independiente para permitir lectura por bloques. */
+.paso {
+  counter-increment: paso;
+  position: relative;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 1.8rem;
+}
+
+/* Los círculos estaban vacíos: ahora muestran el número del paso.
+   Texto oscuro sobre naranja para que el número sea legible (contraste 9.6:1). */
+.paso-numero {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 1rem;
+}
+
+.paso-numero::before {
+  content: counter(paso);
+}
+
+.paso h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.paso p {
+  color: var(--color-texto-suave);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 0;
+}

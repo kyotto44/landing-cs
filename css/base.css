@@ -1,0 +1,41 @@
+/* Estilos generales del documento: fuente, fondo y color de lectura principal. */
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* El documento es oscuro: controles nativos y barra de desplazamiento siguen la misma paleta. */
+html {
+  color-scheme: dark;
+  scrollbar-color: var(--color-borde) var(--color-fondo);
+}
+
+/* El texto seleccionado usa el naranja de la marca en lugar del azul del navegador. */
+::selection {
+  background-color: var(--color-primario);
+  color: var(--color-fondo);
+}
+
+/* Limita el ancho del contenido y mantiene un margen lateral constante. */
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Compensa la cabecera fija para que el contenido no quede oculto debajo de ella. */
+main {
+  padding-top: 80px;
+}
+
+/* Los títulos reparten sus palabras entre líneas para no dejar una sola palabra al final. */
+h1,
+h2 {
+  text-wrap: balance;
+}
+
+/* Evita que una palabra compuesta (post-partida) se parta en dos líneas. */
+.sin-corte {
+  white-space: nowrap;
+}
