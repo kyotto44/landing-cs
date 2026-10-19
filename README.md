@@ -4,6 +4,8 @@ Landing de una sola página que explica cómo se construye software usando la me
 
 Empezó como laboratorio de la materia **Construcción de Software** (Universidad Santo Tomás, Tunja) y luego se completó para el portafolio.
 
+**Sitio publicado:** https://landing-cs-kyotto44.netlify.app
+
 | Escritorio | Móvil |
 | --- | --- |
 | ![Primera pantalla en escritorio](docs/captura-escritorio.webp) | ![Primera pantalla en móvil](docs/captura-movil.webp) |
